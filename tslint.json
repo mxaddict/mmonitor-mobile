@@ -3,7 +3,8 @@
     "no-duplicate-variable": true,
     "no-unused-variable": [
       true
-    ]
+    ],
+    "semicolon": [true, "never"]
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"
