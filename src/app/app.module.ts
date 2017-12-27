@@ -1,6 +1,8 @@
-import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
+import { NgModule, ErrorHandler } from '@angular/core';
+
 import { MMonitor } from './app.component';
 
 import { AboutPage } from '../pages/about/controller';
@@ -19,7 +21,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MMonitor)
+    IonicModule.forRoot(MMonitor),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
