@@ -18,7 +18,7 @@ export class MMonitor {
       statusBar.styleDefault();
       splashScreen.hide();
 
-      if (platform.is('ios')) {
+      if (platform.is('ios') || platform.is('android')) {
         // change #000 to whatever you need
         window['plugins'].webviewcolor.change('#000');
       }
