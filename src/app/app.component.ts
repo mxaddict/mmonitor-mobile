@@ -3,12 +3,12 @@ import { Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../pages/tabs/controller';
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MMonitor {
   rootPage:any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
