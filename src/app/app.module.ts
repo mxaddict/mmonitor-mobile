@@ -1,18 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser'
 import { HttpModule } from '@angular/http'
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular'
+import { IonicStorageModule } from '@ionic/storage'
 import { MomentModule } from 'angular2-moment'
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core'
 
-import { MMonitor } from './app.component';
+import { MMonitor } from './app.component'
 
-import { AboutPage } from '../pages/about/controller';
-import { SettingsPage } from '../pages/settings/controller';
-import { OverviewPage } from '../pages/overview/controller';
+import { AboutPage } from '../pages/about/controller'
+import { SettingsPage } from '../pages/settings/controller'
+import { OverviewPage } from '../pages/overview/controller'
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar'
+import { SplashScreen } from '@ionic-native/splash-screen'
 
 @NgModule({
   declarations: [

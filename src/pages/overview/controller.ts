@@ -115,7 +115,7 @@ export class OverviewPage {
   }
 
   addBotAlert() {
-    let prompt = this.alertCtrl.create({
+    this.alertCtrl.create({
       title: 'Add Bot',
       message: 'Enter the bot details',
       inputs: [
@@ -142,8 +142,7 @@ export class OverviewPage {
           }
         }
       ]
-    });
-    prompt.present();
+    }).present()
   }
 
   deleteBotAlert(botId) {
@@ -165,7 +164,7 @@ export class OverviewPage {
           }
         }
       ]
-    }).present();
+    }).present()
   }
 
   loadBotsStats() {
