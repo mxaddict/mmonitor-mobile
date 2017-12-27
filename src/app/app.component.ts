@@ -3,8 +3,9 @@ import { Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { AboutPage } from '../pages/about/controller';
 import { OverviewPage } from '../pages/overview/controller';
-import { SettingsPage } from '../pages/settings/controller';
+// import { SettingsPage } from '../pages/settings/controller';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +23,8 @@ export class MMonitor {
     // What pages do we have?
     this.pages = [
       { title: 'Overview', component: OverviewPage },
-      { title: 'Settings', component: SettingsPage }
+      { title: 'About', component: AboutPage }
+      // { title: 'Settings', component: SettingsPage }
     ];
   }
 
@@ -32,11 +34,6 @@ export class MMonitor {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      if (this.platform.is('ios') || this.platform.is('android')) {
-        // change #000 to whatever you need
-        window['plugins'].webviewcolor.change('#000');
-      }
     });
   }
 
