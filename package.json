@@ -28,7 +28,9 @@
     "angular2-moment": "^1.7.1",
     "cordova-android": "6.4.0",
     "cordova-ios": "4.5.4",
+    "cordova-plugin-add-swift-support": "^1.7.1",
     "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-ionic": "^2.0.4",
     "cordova-plugin-ionic-webview": "^1.1.11",
     "cordova-plugin-splashscreen": "~4.0.1",
     "cordova-plugin-webviewcolor": "^2.0.0",
@@ -54,7 +56,14 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {}
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic": {
+        "APP_ID": "cb8c2477",
+        "CHANNEL_NAME": "Production",
+        "UPDATE_METHOD": "auto",
+        "UPDATE_API": "https://api.ionicjs.com",
+        "MAX_STORE": "2"
+      }
     },
     "platforms": [
       "android",

@@ -1,6 +1,6 @@
 {
   "name": "MMonitor",
-  "app_id": "",
+  "app_id": "cb8c2477",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

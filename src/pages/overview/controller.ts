@@ -1,4 +1,10 @@
-import { AlertController, ModalController, NavController, ToastController } from 'ionic-angular'
+import {
+  AlertController,
+  ModalController,
+  NavController,
+  Platform,
+  ToastController
+} from 'ionic-angular'
 import { Component } from '@angular/core'
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage'
@@ -19,17 +25,24 @@ export class OverviewPage {
 
   loaded: boolean
 
+  paused: boolean
+
   pollRate: number
 
   pollRateMinutes: number
 
   toastDuration: number
 
+  onPauseSubscription: any
+
+  onResumeSubscription: any
+
   constructor(
     public alertCtrl: AlertController,
     public http: Http,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
+    public platform: Platform,
     public storage: Storage,
     public toastCtrl: ToastController
   ) {
@@ -43,10 +56,35 @@ export class OverviewPage {
     // Load the bots
     this.loadBotsStorage()
 
+    this.onPauseSubscription = this.platform.resume.subscribe(() => {
+      console.log('paused')
+      this.paused = true
+    })
+
+    this.onResumeSubscription = this.platform.resume.subscribe(() => {
+      console.log('resumed')
+      this.paused = false
+    })
+
     // We need to load the bots stats
     setInterval(() => {
       this.loadBotsStats()
     }, this.pollRate)
+  }
+
+  ngOnDestroy() {
+    // We don't need it anymore
+    this.onPauseSubscription.unsubscribe()
+    this.onResumeSubscription.unsubscribe()
+
+    // Loop the bots and remove subscriptions
+    for (let bot of this.bots) {
+      // Check if we have a subscription
+      if (typeof bot.subscription === 'function') {
+        // Turn of the subscription
+        bot.subscription.unsubscribe()
+      }
+    }
   }
 
   deleteBot(botId) {
@@ -169,7 +207,7 @@ export class OverviewPage {
 
   loadBotsStats() {
     // Create the observers
-    if (this.bots.length) {
+    if (this.bots.length && !this.paused) {
       for (let bot of this.bots) {
         bot.subscription = this.http
           .get(`${bot.url}/report.json`)
