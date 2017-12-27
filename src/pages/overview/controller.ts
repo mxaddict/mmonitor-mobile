@@ -1,5 +1,6 @@
 import { AlertController, ModalController, NavController } from 'ionic-angular'
 import { Component } from '@angular/core'
+import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage'
 
 
@@ -13,37 +14,84 @@ export class OverviewPage {
 
   loaded: boolean
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertCtrl: AlertController, public storage: Storage) {
+  pollRate: number
+
+  constructor(
+    public alertCtrl: AlertController,
+    public http: Http,
+    public modalCtrl: ModalController,
+    public navCtrl: NavController,
+    public storage: Storage
+  ) {
     // Set the default to an empty array
     this.bots = []
     this.loaded = false
+    this.pollRateMinutes = 1
+    this.pollRate = 60000 * this.pollRateMinutes
 
     // Load the bots
     this.loadBotsStorage()
+
+    // We need to load the bots stats
+    setInterval(() => {
+      this.loadBotsStats()
+    }, this.pollRate)
   }
 
   deleteBot(botId) {
+    // Check if we have a subscription
+    if (typeof this.bots[botId].subscription === 'function') {
+      // Turn of the subscription
+      this.bots[botId].subscription.unsubscribe()
+    }
+
+    // Remove the bot
     this.bots.splice(botId, 1)
+
+    // Save changes to storage
     this.saveBotsStorage()
   }
 
   addBot(data) {
+    // Add the bot
     this.bots.push(data)
+
+    // Save changes to storage
     this.saveBotsStorage()
   }
 
   saveBotsStorage() {
+    // We are not loaded yet
     if (!this.loaded) {
-      // return
+      return
     }
+
+    for (let bot of this.bots) {
+      // Check if we have a subscription
+      if (typeof bot.subscription === 'function') {
+        // Turn of the subscription
+        bot.subscription.unsubscribe()
+      }
+
+      // Delete it from object
+      delete bot.subscription
+    }
+
+    // Save changes to storage
     this.storage.set('bots', JSON.stringify(this.bots))
   }
 
   loadBotsStorage() {
     this.storage.get('bots').then((val) => {
       if (val) {
-        this.bots = JSON.parse(val)
+        try {
+          this.bots = JSON.parse(val)
+        } catch (e) {
+          /* handle error */
+        }
       }
+
+      // Tell everyone we are loaded
       this.loaded = true
     })
   }
@@ -100,6 +148,27 @@ export class OverviewPage {
         }
       ]
     }).present();
+  }
+
+  loadBotsStats() {
+    // Create the observers
+    if (this.bots.length) {
+      for (let bot of this.bots) {
+        bot.subscription = this.http
+          .get(`${bot.url}/report.json`)
+          .subscribe(response => {
+            try {
+              bot.stats = response.json()
+              bot.stats.spreadPercent = bot.stats.spread / bot.stats.bid
+              bot.updated = new Date
+
+              this.saveBotsStorage()
+            } catch (e) {
+              /* handle error */
+            }
+          })
+      }
+    }
   }
 
 }

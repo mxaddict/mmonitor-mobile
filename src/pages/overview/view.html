@@ -14,22 +14,23 @@
 <ion-content padding>
   <ion-card *ngFor="let bot of bots; index as id">
     <ion-card-header>
-      <h1>{{id}} {{bot.name}}</h1>
+      <h1>{{bot.name}}</h1>
     </ion-card-header>
     <ion-card-content>
       <button ion-button icon-left color="light" block>
         <ion-icon name="information-circle"></ion-icon>
         {{bot.url}}
       </button>
+      <ion-note>Last updated: {{bot.updated | amTimeAgo}}</ion-note>
     </ion-card-content>
     <ion-row padding>
-      <ion-col col-6>
+      <ion-col col-8>
         <button ion-button icon-left color="info" block>
           <ion-icon name="information-circle"></ion-icon>
           Details
         </button>
       </ion-col>
-      <ion-col col-6>
+      <ion-col col-4>
         <button ion-button icon-left color="danger" block (click)="deleteBotAlert(id)">
           <ion-icon name="trash"></ion-icon>
           Delete

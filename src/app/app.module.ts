@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
+import { MomentModule } from 'angular2-moment'
 import { NgModule, ErrorHandler } from '@angular/core';
 
 import { MMonitor } from './app.component';
@@ -21,8 +23,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MMonitor),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    MomentModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
