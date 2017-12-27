@@ -32,7 +32,7 @@ ionic cordova run android --device
 
 # iOS
 ionic cordova run ios --device
-``
+```
 
 ## I made some money with your BOT MONITOR, how do I donate?
 
