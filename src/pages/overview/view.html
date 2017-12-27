@@ -11,23 +11,72 @@
   <button ion-fab color="blue"><ion-icon name="add"></ion-icon></button>
 </ion-fab>
 
-<ion-content padding>
+<ion-content>
   <ion-card *ngFor="let bot of bots; index as id">
     <ion-card-header>
       <h1>{{bot.name}}</h1>
     </ion-card-header>
     <ion-card-content>
-      <button ion-button icon-left color="light" block>
-        <ion-icon name="information-circle"></ion-icon>
-        {{bot.url}}
-      </button>
-      <ion-note>Last updated: {{bot.updated | amTimeAgo}}</ion-note>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button icon-left color="light" block outline>
+            Balance
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button icon-left color="default" block outline>
+            Start
+          </button>
+        </ion-col>
+        <ion-col col-8>
+          <button ion-button icon-left color="default" block outline>
+            {{bot.stats.currency}} {{bot.stats.balance.start | number: '1.8-8'}}
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button icon-left color="{{bot.stats.balance.current > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
+            Current
+          </button>
+        </ion-col>
+        <ion-col col-8>
+          <button ion-button icon-left color="{{bot.stats.balance.current > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
+            {{bot.stats.currency}} {{bot.stats.balance.current | number: '1.8-8'}}
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
+            Profit
+          </button>
+        </ion-col>
+        <ion-col col-8>
+          <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
+            {{bot.stats.currency}} {{bot.stats.balance.profit | number: '1.8-8'}}
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button icon-left color="light" block outline>
+            <ion-icon name="information-circle"></ion-icon>
+            URL: {{bot.url}}
+          </button>
+        </ion-col>
+        <ion-col col-12>
+          <ion-note>Last updated: {{bot.updated | amTimeAgo}}</ion-note>
+        </ion-col>
+      </ion-row>
     </ion-card-content>
-    <ion-row padding>
+    <ion-row>
       <ion-col col-8>
         <button ion-button icon-left color="info" block>
-          <ion-icon name="information-circle"></ion-icon>
-          Details
+          <ion-icon name="analytics"></ion-icon>
+          View Statistics
         </button>
       </ion-col>
       <ion-col col-4>

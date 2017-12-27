@@ -1,4 +1,4 @@
-import { AlertController, ModalController, NavController } from 'ionic-angular'
+import { AlertController, ModalController, NavController, ToastController } from 'ionic-angular'
 import { Component } from '@angular/core'
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage'
@@ -10,24 +10,36 @@ import { Storage } from '@ionic/storage'
 })
 export class OverviewPage {
 
-  bots: Array<{name: string, url: string, stats}>
+  bots: Array<{
+    name: string,
+    url: string,
+    stats: any,
+    subscription: any,
+    updated: Date
+  }>
 
   loaded: boolean
 
   pollRate: number
+
+  pollRateMinutes: number
+
+  toastDuration: number
 
   constructor(
     public alertCtrl: AlertController,
     public http: Http,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
-    public storage: Storage
+    public storage: Storage,
+    public toastCtrl: ToastController
   ) {
     // Set the default to an empty array
     this.bots = []
     this.loaded = false
     this.pollRateMinutes = 1
     this.pollRate = 60000 * this.pollRateMinutes
+    this.toastDuration = 3000
 
     // Load the bots
     this.loadBotsStorage()
@@ -85,6 +97,7 @@ export class OverviewPage {
     this.storage.get('bots').then((val) => {
       if (val) {
         try {
+          // Parse the bots
           this.bots = JSON.parse(val)
         } catch (e) {
           /* handle error */
@@ -160,7 +173,13 @@ export class OverviewPage {
             try {
               bot.stats = response.json()
               bot.stats.spreadPercent = bot.stats.spread / bot.stats.bid
+              bot.stats.balance.profit = bot.stats.balance.current - bot.stats.balance.start
               bot.updated = new Date
+
+              this.toastCtrl.create({
+                message: `Updated stats for "${bot.name}" bot`,
+                duration: this.toastDuration
+              }).present()
 
               this.saveBotsStorage()
             } catch (e) {
