@@ -98,6 +98,9 @@ export class OverviewPage {
         try {
           // Parse the bots
           this.bots = JSON.parse(val)
+
+          // Load stats when we start up
+          this.loadBotsStats()
         } catch (e) {
           /* handle error */
         }

@@ -17,49 +17,51 @@
       <h1>{{bot.name}}</h1>
     </ion-card-header>
     <ion-card-content>
-      <ion-row>
-        <ion-col col-12>
-          <button ion-button icon-left color="light" block outline>
-            Balance
-          </button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <button ion-button icon-left color="default" block outline>
-            Start
-          </button>
-        </ion-col>
-        <ion-col col-8>
-          <button ion-button icon-left color="default" block outline>
-            {{bot.stats.currency}} {{bot.stats.balance.start | number: '1.8-8'}}
-          </button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <button ion-button icon-left color="{{bot.stats.balance.current > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
-            Current
-          </button>
-        </ion-col>
-        <ion-col col-8>
-          <button ion-button icon-left color="{{bot.stats.balance.current > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
-            {{bot.stats.currency}} {{bot.stats.balance.current | number: '1.8-8'}}
-          </button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
-            Profit
-          </button>
-        </ion-col>
-        <ion-col col-8>
-          <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
-            {{bot.stats.currency}} {{bot.stats.balance.profit | number: '1.8-8'}}
-          </button>
-        </ion-col>
-      </ion-row>
+      <div *ngIf="bot.stats">
+        <ion-row>
+          <ion-col col-12>
+            <button ion-button icon-left color="light" block outline>
+              Balance
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button icon-left color="default" block outline>
+              Start
+            </button>
+          </ion-col>
+          <ion-col col-8>
+            <button ion-button icon-left color="default" block outline>
+              {{bot.stats.currency}} {{bot.stats.balance.start | number: '1.8-8'}}
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button icon-left color="{{bot.stats.balance.current > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
+              Current
+            </button>
+          </ion-col>
+          <ion-col col-8>
+            <button ion-button icon-left color="{{bot.stats.balance.current > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
+              {{bot.stats.currency}} {{bot.stats.balance.current | number: '1.8-8'}}
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
+              Profit
+            </button>
+          </ion-col>
+          <ion-col col-8>
+            <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
+              {{bot.stats.currency}} {{bot.stats.balance.profit | number: '1.8-8'}}
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
       <ion-row>
         <ion-col col-12>
           <button ion-button icon-left color="light" block outline>
@@ -68,7 +70,7 @@
           </button>
         </ion-col>
         <ion-col col-12>
-          <ion-note>Last updated: {{bot.updated | amTimeAgo}}</ion-note>
+          <ion-note>Last updated: {{bot.updated ? (bot.updated | amTimeAgo) : 'never'}}</ion-note>
         </ion-col>
       </ion-row>
     </ion-card-content>
