@@ -3,7 +3,6 @@ import { Component } from '@angular/core'
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage'
 
-
 @Component({
   selector: 'page-overview',
   templateUrl: 'view.html'

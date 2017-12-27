@@ -1,8 +1,8 @@
 {
-  "name": "myApp",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "MMonitor",
+  "version": "1.0.0",
+  "author": "Barry Deeney",
+  "homepage": "http://codedmaster.com",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
