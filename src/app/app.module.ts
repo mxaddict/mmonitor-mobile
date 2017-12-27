@@ -6,7 +6,6 @@ import { MMonitor } from './app.component';
 import { AboutPage } from '../pages/about/controller';
 import { SettingsPage } from '../pages/settings/controller';
 import { OverviewPage } from '../pages/overview/controller';
-import { TabsPage } from '../pages/tabs/controller';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +16,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     SettingsPage,
     OverviewPage,
-    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     SettingsPage,
     OverviewPage,
-    TabsPage
   ],
   providers: [
     StatusBar,
