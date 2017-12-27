@@ -17,6 +17,11 @@ export class MMonitor {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+      if (platform.is('ios')) {
+        // change #000 to whatever you need
+        window['plugins'].webviewcolor.change('#000');
+      }
     });
   }
 }
