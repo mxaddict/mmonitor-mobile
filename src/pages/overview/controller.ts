@@ -69,6 +69,9 @@ export class OverviewPage {
 
     // Save changes to storage
     this.saveBotsStorage()
+
+    // Load the stats
+    this.loadBotsStats()
   }
 
   saveBotsStorage() {
