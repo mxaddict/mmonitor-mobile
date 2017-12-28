@@ -2,8 +2,7 @@ import {
   AlertController,
   ModalController,
   NavController,
-  Platform,
-  ToastController
+  Platform
 } from 'ionic-angular'
 import { Component } from '@angular/core'
 import { Http } from '@angular/http'
@@ -31,8 +30,6 @@ export class OverviewPage {
 
   pollRateMinutes: number
 
-  toastDuration: number
-
   onPauseSubscription: any
 
   onResumeSubscription: any
@@ -43,15 +40,13 @@ export class OverviewPage {
     public modalCtrl: ModalController,
     public navCtrl: NavController,
     public platform: Platform,
-    public storage: Storage,
-    public toastCtrl: ToastController
+    public storage: Storage
   ) {
     // Set the default to an empty array
     this.bots = []
     this.loaded = false
     this.pollRateMinutes = 1
     this.pollRate = 60000 * this.pollRateMinutes
-    this.toastDuration = 3000
 
     // Load the bots
     this.loadBotsStorage()
@@ -217,11 +212,6 @@ export class OverviewPage {
               bot.stats.spreadPercent = bot.stats.spread / bot.stats.bid
               bot.stats.balance.profit = bot.stats.balance.current - bot.stats.balance.start
               bot.updated = new Date
-
-              this.toastCtrl.create({
-                message: `Updated stats for "${bot.name}" bot`,
-                duration: this.toastDuration
-              }).present()
 
               this.saveBotsStorage()
             } catch (e) {
