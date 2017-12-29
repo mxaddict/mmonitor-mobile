@@ -26,6 +26,8 @@ export class OverviewPage {
 
   paused: boolean
 
+  showDetails: boolean
+
   pollRate: number
 
   pollRateMinutes: number
@@ -45,6 +47,7 @@ export class OverviewPage {
     // Set the default to an empty array
     this.bots = []
     this.loaded = false
+    this.showDetails = false
     this.pollRateMinutes = 1
     this.pollRate = 60000 * this.pollRateMinutes
 

@@ -19,50 +19,91 @@
     <ion-card-content>
       <div *ngIf="bot.stats">
         <ion-row>
-          <ion-col col-12>
-            <button ion-button icon-left color="light" block outline>
-              Balance
-            </button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-4>
+          <ion-col col-5>
             <button ion-button icon-left color="default" block outline>
               Start
             </button>
           </ion-col>
-          <ion-col col-8>
+          <ion-col col-7>
             <button ion-button icon-left color="default" block outline>
               {{bot.stats.currency}} {{bot.stats.balance.start | number: '1.8-8'}}
             </button>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-4>
+        <ion-row *ngIf="showDetails">
+          <ion-col col-5>
             <button ion-button icon-left color="{{bot.stats.balance.current > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
               Current
             </button>
           </ion-col>
-          <ion-col col-8>
+          <ion-col col-7>
             <button ion-button icon-left color="{{bot.stats.balance.current > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
               {{bot.stats.currency}} {{bot.stats.balance.current | number: '1.8-8'}}
             </button>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-4>
-            <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
-              Profit
+        <ion-row *ngIf="showDetails">
+          <ion-col col-5>
+            <button ion-button icon-left color="{{bot.stats.balance.consolidated > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
+              Consolidated
             </button>
           </ion-col>
-          <ion-col col-8>
+          <ion-col col-7>
+            <button ion-button icon-left color="{{bot.stats.balance.consolidated > bot.stats.balance.start ? 'secondary' : 'danger'}}" block outline>
+              {{bot.stats.currency}} {{bot.stats.balance.consolidated | number: '1.8-8'}}
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+            <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
+              P/L %
+            </button>
+          </ion-col>
+          <ion-col col-7>
+            <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
+              {{bot.stats.balance.profit / bot.stats.balance.start | number: '1.4-4'}}%
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showDetails">
+          <ion-col col-5>
+            <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
+              P/L Total
+            </button>
+          </ion-col>
+          <ion-col col-7>
             <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
               {{bot.stats.currency}} {{bot.stats.balance.profit | number: '1.8-8'}}
             </button>
           </ion-col>
         </ion-row>
+        <ion-row *ngIf="showDetails">
+          <ion-col col-5>
+            <button ion-button icon-left color="{{bot.stats.position ? (bot.stats.position.pl > bot.stats.balance.start ? 'secondary' : 'danger') : 'dark'}}" block outline>
+              P/L Position
+            </button>
+          </ion-col>
+          <ion-col col-7>
+            <button ion-button icon-left color="{{bot.stats.position ? (bot.stats.position.pl > bot.stats.balance.start ? 'secondary' : 'danger') : 'dark'}}" block outline>
+              {{bot.stats.currency}} {{bot.stats.position.pl | number: '1.8-8'}}
+            </button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="showDetails">
+          <ion-col col-5>
+            <button ion-button icon-left color="{{bot.stats.position.pl > 0 ? 'secondary' : 'danger'}}" block outline>
+              P/L Position %
+            </button>
+          </ion-col>
+          <ion-col col-7>
+            <button ion-button icon-left color="{{bot.stats.position.pl > 0 ? 'secondary' : 'danger'}}" block outline>
+              {{bot.stats.position.pl / bot.stats.balance.start | number: '1.4-4'}}%
+            </button>
+          </ion-col>
+        </ion-row>
       </div>
-      <ion-row>
+      <ion-row *ngIf="showDetails">
         <ion-col col-12>
           <button ion-button icon-left color="light" block outline>
             <ion-icon name="link"></ion-icon>
@@ -74,13 +115,13 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-8>
-          <button ion-button icon-left color="info" block>
+        <ion-col col-7>
+          <button ion-button icon-left color="info" block (click)="showDetails = !showDetails">
             <ion-icon name="analytics"></ion-icon>
-            View Statistics
+            {{ !showDetails ? 'Show': 'Hide'}} Details
           </button>
         </ion-col>
-        <ion-col col-4>
+        <ion-col col-5>
           <button ion-button icon-left color="danger" block (click)="deleteBotAlert(id)">
             <ion-icon name="trash"></ion-icon>
             Delete

@@ -73,13 +73,25 @@ $colors: (
 @import "ionic.theme.dark";
 
 // Fix the colors for cards
-$card-header-color:                $text-color !default;
-$card-title-text-color:            $text-color !default;
-$card-text-color:                  $text-color !default;
+$card-header-color:             $text-color !default;
+$card-title-text-color:         $text-color !default;
+$card-text-color:               $text-color !default;
+$note-color:                    $text-color !default;
 
-$card-md-header-color:             $text-color !default;
-$card-md-title-text-color:         $text-color !default;
-$card-md-text-color:               $text-color !default;
+$card-md-header-color:          $text-color !default;
+$card-md-title-text-color:      $text-color !default;
+$card-md-text-color:            $text-color !default;
+$note-md-color:                 $text-color !default;
+
+$card-ios-header-color:         $text-color !default;
+$card-ios-title-text-color:     $text-color !default;
+$card-ios-text-color:           $text-color !default;
+$note-ios-color:                $text-color !default;
+
+$card-android-header-color:     $text-color !default;
+$card-android-title-text-color: $text-color !default;
+$card-android-text-color:       $text-color !default;
+$note-android-color:            $text-color !default;
 
 // Ionicons
 // --------------------------------------------------
