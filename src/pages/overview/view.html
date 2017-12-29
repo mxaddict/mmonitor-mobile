@@ -80,12 +80,12 @@
         </ion-row>
         <ion-row *ngIf="showDetails">
           <ion-col col-5>
-            <button ion-button icon-left color="{{bot.stats.position ? (bot.stats.position.pl > bot.stats.balance.start ? 'secondary' : 'danger') : 'dark'}}" block outline>
+            <button ion-button icon-left color="{{bot.stats.position ? (bot.stats.position.pl > 0 ? 'secondary' : 'danger') : 'dark'}}" block outline>
               P/L Position
             </button>
           </ion-col>
           <ion-col col-7>
-            <button ion-button icon-left color="{{bot.stats.position ? (bot.stats.position.pl > bot.stats.balance.start ? 'secondary' : 'danger') : 'dark'}}" block outline>
+            <button ion-button icon-left color="{{bot.stats.position ? (bot.stats.position.pl > 0 ? 'secondary' : 'danger') : 'dark'}}" block outline>
               {{bot.stats.currency}} {{bot.stats.position.pl | number: '1.8-8'}}
             </button>
           </ion-col>
