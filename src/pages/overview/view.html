@@ -62,7 +62,7 @@
           </ion-col>
           <ion-col col-7>
             <button ion-button icon-left color="{{bot.stats.balance.profit > 0 ? 'secondary' : 'danger'}}" block outline>
-              {{bot.stats.balance.profit / bot.stats.balance.start | number: '1.4-4'}}%
+              {{bot.stats.balance.profit / bot.stats.balance.start * 100 | number: '1.2-2'}}%
             </button>
           </ion-col>
         </ion-row>
@@ -98,7 +98,7 @@
           </ion-col>
           <ion-col col-7>
             <button ion-button icon-left color="{{bot.stats.position.pl > 0 ? 'secondary' : 'danger'}}" block outline>
-              {{bot.stats.position.pl / bot.stats.balance.start | number: '1.4-4'}}%
+              {{bot.stats.position.pl / bot.stats.balance.start * 100 | number: '1.2-2'}}%
             </button>
           </ion-col>
         </ion-row>
