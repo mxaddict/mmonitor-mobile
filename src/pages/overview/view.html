@@ -98,7 +98,7 @@
           </ion-col>
           <ion-col col-7>
             <button ion-button icon-left color="{{bot.stats.position ? (bot.stats.position.pl > 0 ? 'secondary' : 'danger') : 'dark'}}" block outline>
-              {{bot.stats.position.pl / bot.stats.balance.start * 100 | number: '1.2-2'}}%
+              {{bot.stats.position.pl / bot.stats.balance.current * 100 | number: '1.2-2'}}%
             </button>
           </ion-col>
         </ion-row>
