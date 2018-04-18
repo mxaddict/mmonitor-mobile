@@ -4,7 +4,7 @@
 
 ## What is this even for?
 
-MMonitor Mobile is a mobile monitor for [mmaker](https://gibhub.com/mxaddict/mmaker)
+MMonitor Mobile is a mobile monitor for [mmaker](https://github.com/mxaddict/mmaker)
 
 ## How to run this locally?
 
