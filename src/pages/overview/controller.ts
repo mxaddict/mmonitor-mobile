@@ -213,7 +213,8 @@ export class OverviewPage {
             try {
               bot.stats = response.json()
               bot.stats.spreadPercent = bot.stats.spread / bot.stats.bid
-              bot.stats.balance.profit = bot.stats.balance.current - bot.stats.balance.start
+              bot.stats.balance[bot.stats.asset].profit = bot.stats.balance[bot.stats.asset].consolidated - bot.stats.balance[bot.stats.asset].total
+              bot.stats.balance[bot.stats.currency].profit = bot.stats.balance[bot.stats.currency].consolidated - bot.stats.balance[bot.stats.currency].total
               bot.updated = new Date
 
               this.saveBotsStorage()
