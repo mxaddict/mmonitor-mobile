@@ -76,7 +76,6 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <engine name="android" spec="6.4.0" />
     <plugin name="cordova-plugin-webviewcolor" spec="^2.0.0" />
     <plugin name="cordova-sqlite-storage" spec="^2.1.4" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
@@ -85,7 +84,6 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <allow-navigation href="http://10.0.0.5:8101" />
-    <engine name="ios" spec="~4.5.4" />
     <plugin name="cordova-plugin-ionic" spec="^2.0.4">
         <variable name="APP_ID" value="cb8c2477" />
         <variable name="CHANNEL_NAME" value="Production" />
@@ -93,4 +91,6 @@
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
     </plugin>
+    <engine name="android" spec="6.4.0" />
+    <engine name="ios" spec="4.5.4" />
 </widget>
