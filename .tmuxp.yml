@@ -11,4 +11,4 @@ windows:
       - git status
 - window_name: server
   panes:
-    - ls -laF
+    - ionic serve
